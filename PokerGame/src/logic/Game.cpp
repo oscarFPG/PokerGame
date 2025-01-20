@@ -1,6 +1,10 @@
 #include "Game.h"
 
 Game::Game() {
+
+	if (_isPrintingOnConsole)
+		_gamePrinter = new GamePrinter();
+
 	_table = new Table();
 }
 

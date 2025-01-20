@@ -32,5 +32,6 @@ void Controller::run() {
 
 	// Repartir y recoger cartas
 	_game->shareOutCards();
+	_game->printGame();
 	_game->retrieveCards();
 }
