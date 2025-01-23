@@ -20,6 +20,7 @@ public:
 
 	void takeCard(Card& card);
 	Card* retrieveCard();
-
 	bool isPlaying();
+
+	const std::string getPlayerName() const;
 };

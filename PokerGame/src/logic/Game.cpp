@@ -21,7 +21,8 @@ void Game::retrieveCards() {
 }
 
 void Game::printGame() {
-	_table->printTable();
+	if(_isPrintingOnConsole)
+		_gamePrinter->printTable(_table);
 }
 
 bool Game::isGameFinished() {

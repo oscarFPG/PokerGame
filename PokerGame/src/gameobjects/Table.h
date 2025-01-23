@@ -10,6 +10,8 @@ private:
 
 	Deck* _deck;
 	std::vector<Player> _players;
+	std::vector<std::unique_ptr<Card>> _cards;
+
 public:
 
 	static const int MAX_PLAYERS = 6;
@@ -20,5 +22,6 @@ public:
 	void shareOutCards();
 	void retrieveCards();
 	void printDeck();
-	void printTable();
+
+	const std::vector<Player> getPlayerList() const;
 };

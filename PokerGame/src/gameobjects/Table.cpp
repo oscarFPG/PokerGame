@@ -46,16 +46,6 @@ void Table::printDeck() {
 	_deck->printAllDeck();
 }
 
-void Table::printTable() {
-
-	// Print both top players
-
-	// Print left side player
-
-	// Print table
-
-	// Print right side player
-
-	// Print both bottom players
-
+const std::vector<Player> Table::getPlayerList() const{
+	return _players;
 }

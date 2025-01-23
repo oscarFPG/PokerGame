@@ -23,3 +23,7 @@ Card* Player::retrieveCard() {
 bool Player::isPlaying() {
 	return _playing;
 }
+
+const std::string Player::getPlayerName() const{
+	return _name;
+}
