@@ -1,6 +1,6 @@
 #include "GamePrinter.h"
 
-GamePrinter::GamePrinter()
+GamePrinter::GamePrinter(const int maxCardsOnTable)
 {
 	TABS_TOP_BOTTOM_PLAYERS = "\t\t  ";
 	TABS_CENTER_ROW = "\t";
@@ -8,11 +8,13 @@ GamePrinter::GamePrinter()
 	TABS_BETWEEN_PLAYERS_CENTER = "\t";
 	TABS_BETWEEN_TABLE_PLAYER_LEFT = "    ";
 	TABS_BETWEEN_TABLE_PLAYER_RIGHT = "   ";
+	numCards = maxCardsOnTable;
 }
 
 void GamePrinter::printTable(const Table* table)
 {
 	const std::vector<Player> playerList = table->getPlayerList();
+	const std::vector<Card*> cardsOnTable = table->getCardsOnTable();
 
 	/*
 		COMO REPRESENTAR EL TABLERO
@@ -29,7 +31,12 @@ void GamePrinter::printTable(const Table* table)
 	std::cout << TABS_CENTER_ROW << playerList[5].getPlayerName() << TABS_BETWEEN_TABLE_PLAYER_LEFT;
 
 	// Print table
-	std::cout << "[x] [x] [x] [x] [x]";
+	for (int i = 0; i < numCards; i++) {
+		if (cardsOnTable[i] != NULL)
+			std::cout << cardsOnTable[i]->toString();
+		else
+			std::cout << "[xx]";
+	}
 
 	// Print right side player
 	std::cout << TABS_BETWEEN_TABLE_PLAYER_RIGHT << playerList[2].getPlayerName() << "\n";

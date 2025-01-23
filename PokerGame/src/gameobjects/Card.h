@@ -22,5 +22,5 @@ public:
 	bool isTaken();
 	int getValue();
 	int getSuit();
-	void print();
+	std::string toString();
 };

@@ -2,6 +2,10 @@
 
 Table::Table() {
 	_deck = new Deck();
+	_cardsOnTable.reserve(MAX_CARDS_ON_TABLE);
+	for (int i = 0; i < MAX_CARDS_ON_TABLE; i++)
+		_cardsOnTable.push_back(NULL);
+	_cardsCounter = 0;
 }
 
 void Table::addPlayer(Player& p) {
@@ -42,8 +46,29 @@ void Table::retrieveCards() {
 	}
 }
 
+void Table::addCardToTable(){
+	Card* card = _deck->takeRandomCard();
+	_cardsOnTable[_cardsCounter++] = card;
+}
+
+void Table::retrieveCardsFromTable(){
+
+	const int numCards = _cardsCounter;
+
+	for (int i = 0; i < numCards; i++) {
+		Card* card = _cardsOnTable.at(_cardsCounter - 1);
+		_cardsOnTable.pop_back();
+		_deck->retrieveCard(*card);
+	}
+	_cardsCounter = 0;
+}
+
 void Table::printDeck() {
 	_deck->printAllDeck();
+}
+
+const std::vector<Card*> Table::getCardsOnTable() const{
+	return _cardsOnTable;
 }
 
 const std::vector<Player> Table::getPlayerList() const{

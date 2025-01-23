@@ -11,11 +11,12 @@ private:
 	std::string TABS_BETWEEN_PLAYERS_CENTER;
 	std::string TABS_BETWEEN_TABLE_PLAYER_LEFT;
 	std::string TABS_BETWEEN_TABLE_PLAYER_RIGHT;
+	int numCards;
 
 public:
 
 	const static int MAX_PLAYERNAME_LENGHT = 8;
 
-	GamePrinter();
+	GamePrinter(const int maxCardsOnTable);
 	void printTable(const Table* table);
 };

@@ -19,6 +19,9 @@ public:
 	void addPlayerToTable(Player& p);
 	void shareOutCards();
 	void retrieveCards();
+	void addCardToTable();
+	void retrieveCardsFromTable();
+
 	void printGame();
 	bool isGameFinished();
 };

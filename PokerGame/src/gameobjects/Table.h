@@ -6,22 +6,29 @@
 
 class Table {
 
+public:
+
+	static const int MAX_PLAYERS = 6;
+	static const int MAX_CARDS_ON_TABLE = 5;
+
 private:
 
 	Deck* _deck;
 	std::vector<Player> _players;
-	std::vector<std::unique_ptr<Card>> _cards;
+	std::vector<Card*> _cardsOnTable;
+	int _cardsCounter;
 
 public:
-
-	static const int MAX_PLAYERS = 6;
 
 	Table();
 
 	void addPlayer(Player& p);
 	void shareOutCards();
 	void retrieveCards();
-	void printDeck();
+	void addCardToTable();
+	void retrieveCardsFromTable();
 
+	void printDeck();
+	const std::vector<Card *> getCardsOnTable() const;
 	const std::vector<Player> getPlayerList() const;
 };

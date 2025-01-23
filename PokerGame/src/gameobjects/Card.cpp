@@ -49,17 +49,13 @@ int Card::getSuit() {
 	return _suit;
 }
 
-void Card::print() {
+std::string Card::toString() {
 
-	std::cout << "[";
-	if (!_taken) {
-		std::cout << _value;
-		std::cout << Card::suitToChar(_suit);
-	}
-	else {
-		std::cout << 'x';
-		std::cout << 'x';
-	}
+	std::string info;
+	info.push_back('[');
+	info.append(std::to_string(_value));
+	info.push_back(Card::suitToChar(_suit));
+	info.push_back(']');
 
-	std::cout << "]";
+	return info;
 }

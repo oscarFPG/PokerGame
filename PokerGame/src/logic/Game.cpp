@@ -3,7 +3,7 @@
 Game::Game() {
 
 	if (_isPrintingOnConsole)
-		_gamePrinter = new GamePrinter();
+		_gamePrinter = new GamePrinter(Table::MAX_CARDS_ON_TABLE);
 
 	_table = new Table();
 }
@@ -18,6 +18,14 @@ void Game::shareOutCards() {
 
 void Game::retrieveCards() {
 	_table->retrieveCards();
+}
+
+void Game::addCardToTable(){
+	_table->addCardToTable();
+}
+
+void Game::retrieveCardsFromTable(){
+	_table->retrieveCardsFromTable();
 }
 
 void Game::printGame() {

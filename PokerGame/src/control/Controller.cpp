@@ -27,16 +27,12 @@ Controller::Controller(Game* game) {
 
 void Controller::run() {
 
-	// Configuracion inicial del juego
 	configureGame();
 
-	// Repartir cartas
 	_game->shareOutCards();
+
+	_game->addCardToTable();
 	_game->printGame();
 
-	// Cada jugador coge una carta
-	_game->addCardToTable();
-
-	// Devolver cartas
 	_game->retrieveCards();
 }

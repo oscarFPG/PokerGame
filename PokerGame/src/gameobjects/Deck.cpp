@@ -7,7 +7,7 @@ Deck::Deck() {
 
 Card* Deck::takeRandomCard() {
 
-	int suit = rand() % Deck::NUM_SUITS;
+	int suit  = rand() % Deck::NUM_SUITS;
 	int value = rand() % Deck::NUM_VALUES;
 
 	// Mark the card as taken
@@ -21,7 +21,7 @@ void Deck::printAllDeck() {
 	for (int i = 0; i < Deck::NUM_SUITS; i++) {
 		for (int j = 0; j < Deck::NUM_VALUES; j++) {
 			Card* card = &_fullDeck[i][j];
-			card->print();
+			std::cout << card->toString() << " ";
 		}
 	std::cout << '\n';
 	}
