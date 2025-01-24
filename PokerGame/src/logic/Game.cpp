@@ -8,7 +8,7 @@ Game::Game() {
 	_table = new Table();
 }
 
-void Game::addPlayerToTable(Player& p) {
+void Game::addPlayerToTable(Player& p) const{
 	_table->addPlayer(p);
 }
 

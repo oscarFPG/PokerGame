@@ -18,5 +18,5 @@ public:
 	const static int MAX_PLAYERNAME_LENGHT = 8;
 
 	GamePrinter(const int maxCardsOnTable);
-	void printTable(const Table* table);
+	const void printTable(const Table* table) const;
 };

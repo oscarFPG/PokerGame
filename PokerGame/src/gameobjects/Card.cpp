@@ -6,10 +6,9 @@ Card::Card() {}
 Card::Card(int value, int suit) {
 	_value = value;
 	_suit = suit;
-	_taken = false;
 }
 
-char Card::suitToChar(int suit) {
+const char Card::suitToChar(int suit) const {
 
 	switch (suit) {
 	case 0:
@@ -25,10 +24,6 @@ char Card::suitToChar(int suit) {
 	}
 }
 
-void Card::setTaken(bool taken) {
-	_taken = taken;
-}
-
 void Card::setValue(int value) {
 	_value = value;
 }
@@ -37,19 +32,15 @@ void Card::setSuit(int suit) {
 	_suit = suit;
 }
 
-bool Card::isTaken() {
-	return _taken;
-}
-
-int Card::getValue() {
+const int Card::getValue() const {
 	return _value;
 }
 
-int Card::getSuit() {
+const int Card::getSuit() const {
 	return _suit;
 }
 
-std::string Card::toString() {
+const std::string Card::toString() const {
 
 	std::string info;
 	info.push_back('[');
@@ -58,4 +49,8 @@ std::string Card::toString() {
 	info.push_back(']');
 
 	return info;
+}
+
+const std::string Card::missingCardToString(){
+	return "[xx]";
 }

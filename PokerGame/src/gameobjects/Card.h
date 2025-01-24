@@ -8,19 +8,18 @@ private:
 
 	int _value;
 	int _suit;
-	bool _taken;
 public:
 
 	Card();
 	Card(int value, int suit);
 
-	char suitToChar(int suit);
+	const char suitToChar(int suit) const;
 
-	void setTaken(bool taken);
 	void setValue(int value);
 	void setSuit(int suit);
-	bool isTaken();
-	int getValue();
-	int getSuit();
-	std::string toString();
+	const int getValue() const;
+	const int getSuit() const;
+
+	const std::string toString() const;
+	const std::string static missingCardToString();
 };

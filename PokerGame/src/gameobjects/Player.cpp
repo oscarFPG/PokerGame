@@ -7,20 +7,25 @@ Player::Player(std::string name, int pot) {
 	_playing = true;
 }
 
-void Player::takeCard(Card& card) {
+Player::Player(const Player& player){
+
+}
+
+void Player::takeCard(std::unique_ptr<Card>& card) {
 
 	if (_cardsCounter < Player::MAX_CARDS_ON_HAND)
-		_hand[_cardsCounter++] = &card;
+		_hand[_cardsCounter++] = std::move(card);
 }
 
-Card* Player::retrieveCard() {
+const std::unique_ptr<Card> Player::retrieveCard() {
 
-	Card* card = _hand[--_cardsCounter];
-	_hand[_cardsCounter] = nullptr;
-	return card;
+	if (_cardsCounter == 0)
+		return nullptr;
+
+	return std::move(_hand[--_cardsCounter]);
 }
 
-bool Player::isPlaying() {
+const bool Player::isPlaying() const{
 	return _playing;
 }
 

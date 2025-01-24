@@ -3,8 +3,6 @@
 Table::Table() {
 	_deck = new Deck();
 	_cardsOnTable.reserve(MAX_CARDS_ON_TABLE);
-	for (int i = 0; i < MAX_CARDS_ON_TABLE; i++)
-		_cardsOnTable.push_back(NULL);
 	_cardsCounter = 0;
 }
 
@@ -24,10 +22,10 @@ void Table::shareOutCards() {
 		if (p->isPlaying()) {
 
 			// Take two cards from the deck and give it to the player
-			Card* card = _deck->takeRandomCard();
-			p->takeCard(*card);
+			std::unique_ptr<Card> card = _deck->takeRandomCard();
+			p->takeCard(card);
 			card = _deck->takeRandomCard();
-			p->takeCard(*card);
+			p->takeCard(card);
 		}
 	}
 	std::cout << '\n';
@@ -40,15 +38,15 @@ void Table::retrieveCards() {
 		// Take both of player cards
 		for (int j = 0; j < Player::MAX_CARDS_ON_HAND; j++) {
 			Player* p = &_players[i];
-			Card* card = p->retrieveCard();
-			_deck->retrieveCard(*card);
+			std::unique_ptr<Card> card = p->retrieveCard();
+			_deck->retrieveCard(card);
 		}
 	}
 }
 
 void Table::addCardToTable(){
-	Card* card = _deck->takeRandomCard();
-	_cardsOnTable[_cardsCounter++] = card;
+	std::unique_ptr<Card> card = _deck->takeRandomCard();
+	_cardsOnTable[_cardsCounter++] = std::move(card);
 }
 
 void Table::retrieveCardsFromTable(){
@@ -56,9 +54,9 @@ void Table::retrieveCardsFromTable(){
 	const int numCards = _cardsCounter;
 
 	for (int i = 0; i < numCards; i++) {
-		Card* card = _cardsOnTable.at(_cardsCounter - 1);
-		_cardsOnTable.pop_back();
-		_deck->retrieveCard(*card);
+		std::unique_ptr<Card> card = std::move(_cardsOnTable.at(_cardsCounter - 1));
+		//_cardsOnTable.pop_back();	// No es neceseario ¿?¿?
+		_deck->retrieveCard(card);
 	}
 	_cardsCounter = 0;
 }
@@ -67,10 +65,21 @@ void Table::printDeck() {
 	_deck->printAllDeck();
 }
 
-const std::vector<Card*> Table::getCardsOnTable() const{
-	return _cardsOnTable;
+const std::vector<std::string> Table::getCardsOnTableInfo() const{
+
+	std::vector<std::string> infoList;
+
+	int numCards = _cardsOnTable.size();
+	for (int i = 0; i < numCards; i++) {
+		if (!_cardsOnTable[i])
+			infoList.push_back(_cardsOnTable[i]->toString());
+		else
+			infoList.push_back(Card::missingCardToString());
+	}
+
+	return infoList;
 }
 
-const std::vector<Player> Table::getPlayerList() const{
+const std::vector<Player&> Table::getPlayerList() const{
 	return _players;
 }

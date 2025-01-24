@@ -13,7 +13,7 @@ public:
 
 private:
 
-	Card _fullDeck[Deck::NUM_SUITS][Deck::NUM_VALUES];
+	std::unique_ptr<Card> _fullDeck[Deck::NUM_SUITS][Deck::NUM_VALUES];
 
 	void initializeDeck();
 
@@ -21,7 +21,7 @@ public:
 
 	Deck();
 
-	Card* takeRandomCard();
-	void printAllDeck();
-	void retrieveCard(Card& card);
+	std::unique_ptr<Card> takeRandomCard();
+	const void printAllDeck() const;
+	void retrieveCard(std::unique_ptr<Card>& card);
 };
