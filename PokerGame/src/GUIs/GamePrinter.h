@@ -11,7 +11,6 @@ private:
 	std::string TABS_BETWEEN_PLAYERS_CENTER;
 	std::string TABS_BETWEEN_TABLE_PLAYER_LEFT;
 	std::string TABS_BETWEEN_TABLE_PLAYER_RIGHT;
-	int numCards;
 
 public:
 

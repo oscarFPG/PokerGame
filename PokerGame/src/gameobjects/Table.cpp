@@ -6,19 +6,19 @@ Table::Table() {
 	_cardsCounter = 0;
 }
 
-void Table::addPlayer(Player& p) {
+void Table::addPlayer(std::shared_ptr<Player>& player) {
 
-	if (_players.size() == MAX_PLAYERS)
+	if (_players.size() >= MAX_PLAYERS)
 		return;
 
-	_players.push_back(p);
+	_players.push_back(player);
 }
 
 void Table::shareOutCards() {
 
 	for (int i = 0; i < _players.size(); i++) {
 
-		Player* p = &_players[i];
+		std::shared_ptr<Player> p = _players[i];
 		if (p->isPlaying()) {
 
 			// Take two cards from the deck and give it to the player
@@ -37,7 +37,8 @@ void Table::retrieveCards() {
 
 		// Take both of player cards
 		for (int j = 0; j < Player::MAX_CARDS_ON_HAND; j++) {
-			Player* p = &_players[i];
+
+			std::shared_ptr<Player> p = _players[i];
 			std::unique_ptr<Card> card = p->retrieveCard();
 			_deck->retrieveCard(card);
 		}
@@ -46,7 +47,7 @@ void Table::retrieveCards() {
 
 void Table::addCardToTable(){
 	std::unique_ptr<Card> card = _deck->takeRandomCard();
-	_cardsOnTable[_cardsCounter++] = std::move(card);
+	_cardsOnTable.push_back(std::move(card));
 }
 
 void Table::retrieveCardsFromTable(){
@@ -69,17 +70,19 @@ const std::vector<std::string> Table::getCardsOnTableInfo() const{
 
 	std::vector<std::string> infoList;
 
-	int numCards = _cardsOnTable.size();
-	for (int i = 0; i < numCards; i++) {
-		if (!_cardsOnTable[i])
-			infoList.push_back(_cardsOnTable[i]->toString());
-		else
-			infoList.push_back(Card::missingCardToString());
+	int numCards = 0;
+	for (int i = 0; i < _cardsOnTable.size(); i++) {
+		infoList.push_back(_cardsOnTable[i]->toString());
+		numCards++;
 	}
+
+	// 'Añadir' las cartas que no se han puesto aun
+	for (numCards; numCards < Table::MAX_CARDS_ON_TABLE; numCards++)
+		infoList.push_back(Card::missingCardToString());
 
 	return infoList;
 }
 
-const std::vector<Player&> Table::getPlayerList() const{
+const std::vector<std::shared_ptr<Player>> Table::getPlayerList() const{
 	return _players;
 }

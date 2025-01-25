@@ -38,7 +38,7 @@
     <ClInclude Include="src\gameobjects\Table.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="doc\README.me" />
+    <None Include="README.me" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

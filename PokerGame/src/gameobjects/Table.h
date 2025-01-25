@@ -14,7 +14,7 @@ public:
 private:
 
 	Deck* _deck;
-	std::vector<Player&> _players;
+	std::vector<std::shared_ptr<Player>> _players;
 	std::vector<std::unique_ptr<Card>> _cardsOnTable;
 	int _cardsCounter;
 
@@ -22,7 +22,7 @@ public:
 
 	Table();
 
-	void addPlayer(Player& p);
+	void addPlayer(std::shared_ptr<Player>& player);
 	void shareOutCards();
 	void retrieveCards();
 	void addCardToTable();
@@ -30,5 +30,5 @@ public:
 
 	void printDeck();
 	const std::vector<std::string> getCardsOnTableInfo() const;
-	const std::vector<Player&> getPlayerList() const;
+	const std::vector<std::shared_ptr<Player>> getPlayerList() const;
 };

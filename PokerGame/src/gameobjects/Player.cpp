@@ -17,7 +17,7 @@ void Player::takeCard(std::unique_ptr<Card>& card) {
 		_hand[_cardsCounter++] = std::move(card);
 }
 
-const std::unique_ptr<Card> Player::retrieveCard() {
+std::unique_ptr<Card> Player::retrieveCard() {
 
 	if (_cardsCounter == 0)
 		return nullptr;

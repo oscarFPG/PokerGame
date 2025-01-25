@@ -4,6 +4,13 @@
 
 class Card {
 
+public:
+	
+	static const int CARD_JOKER = 11;
+	static const int CARD_QUEEN = 12;
+	static const int CARD_KING = 13;
+	static const int CARD_AS = 14;
+
 private:
 
 	int _value;
@@ -11,8 +18,9 @@ private:
 public:
 
 	Card();
-	Card(int value, int suit);
+	Card(int suit, int value);
 
+	const std::string valueToString(int value) const;
 	const char suitToChar(int suit) const;
 
 	void setValue(int value);

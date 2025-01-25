@@ -64,6 +64,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="doc\README.me" />
+    <None Include="README.me" />
   </ItemGroup>
 </Project>

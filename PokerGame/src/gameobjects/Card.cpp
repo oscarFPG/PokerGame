@@ -1,12 +1,37 @@
-#include "Card.h"
+﻿#include "Card.h"
 
 
 Card::Card() {}
 
-Card::Card(int value, int suit) {
+Card::Card(int suit, int value) {
 	_value = value;
 	_suit = suit;
 }
+
+const std::string Card::valueToString(int value) const {
+	
+	switch (value){
+
+	case 10:
+		return "10";
+
+	case Card::CARD_JOKER:
+		return "J";
+
+	case Card::CARD_QUEEN:
+		return "Q";
+
+	case Card::CARD_KING:
+		return "K";
+
+	case Card::CARD_AS:
+		return "A";
+
+	default:
+		return std::to_string(value);	// Convertir a char
+	}
+}
+
 
 const char Card::suitToChar(int suit) const {
 
@@ -44,7 +69,7 @@ const std::string Card::toString() const {
 
 	std::string info;
 	info.push_back('[');
-	info.append(std::to_string(_value));
+	info.append(Card::valueToString(_value));
 	info.push_back(Card::suitToChar(_suit));
 	info.push_back(']');
 

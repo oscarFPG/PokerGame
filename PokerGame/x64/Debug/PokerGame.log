@@ -1,6 +1,6 @@
-﻿  GamePrinter.cpp
-D:\PokerGame\PokerGame\src\GUIs\GamePrinter.h(22,2): warning C4091: 'static ': ignored on left of 'GamePrinter' when no variable is declared
-  Table.cpp
-D:\PokerGame\PokerGame\src\gameobjects\Table.cpp(72,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  Controller.cpp
+D:\PokerGame\PokerGame\src\GUIs\GamePrinter.h(21,2): warning C4091: 'static ': ignored on left of 'GamePrinter' when no variable is declared
+  PokerGame.cpp
+D:\PokerGame\PokerGame\src\GUIs\GamePrinter.h(21,2): warning C4091: 'static ': ignored on left of 'GamePrinter' when no variable is declared
   Generating Code...
   PokerGame.vcxproj -> D:\PokerGame\x64\Debug\PokerGame.exe

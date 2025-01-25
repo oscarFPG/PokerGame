@@ -8,12 +8,11 @@ GamePrinter::GamePrinter(const int maxCardsOnTable)
 	TABS_BETWEEN_PLAYERS_CENTER = "\t";
 	TABS_BETWEEN_TABLE_PLAYER_LEFT = "    ";
 	TABS_BETWEEN_TABLE_PLAYER_RIGHT = "   ";
-	numCards = maxCardsOnTable;
 }
 
 const void GamePrinter::printTable(const Table* table) const {
 
-	const std::vector<Player*> playerList = table->getPlayerList();
+	const std::vector<std::shared_ptr<Player>> playerList = table->getPlayerList();
 	const std::vector<std::string> cardsOnTable = table->getCardsOnTableInfo();
 
 	/*
@@ -31,6 +30,7 @@ const void GamePrinter::printTable(const Table* table) const {
 	std::cout << TABS_CENTER_ROW << playerList[5]->getPlayerName() << TABS_BETWEEN_TABLE_PLAYER_LEFT;
 
 	// Print table
+	int numCards = cardsOnTable.size();
 	for (int i = 0; i < numCards; i++) {
 		std::cout << cardsOnTable[i];
 	}

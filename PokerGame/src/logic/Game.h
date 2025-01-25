@@ -16,7 +16,7 @@ public:
 
 	Game();
 
-	void addPlayerToTable(Player& p) const;
+	void addPlayerToTable(std::shared_ptr<Player>& p) const;
 	void shareOutCards();
 	void retrieveCards();
 	void addCardToTable();

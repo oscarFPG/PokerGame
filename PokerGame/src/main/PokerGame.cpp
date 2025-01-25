@@ -5,12 +5,9 @@
 
 int main() {
 
-	Game* game = new Game();
-	Controller* controller = new Controller(game);
+	std::unique_ptr<Game> game = std::make_unique<Game>();
+	std::unique_ptr<Controller> controller = std::make_unique<Controller>(std::move(game));
 	controller->run();
-
-	delete controller;
-	delete game;
 
 	return 0;
 }

@@ -7,11 +7,12 @@ class Controller {
 
 private:
 
-	Game* _game;
+	std::unique_ptr<Game> _game;
 	void configureGame();
+
 public:
 
-	Controller(Game* game);
+	Controller(std::unique_ptr<Game> game);
 
 	void run();
 };
