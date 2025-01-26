@@ -21,6 +21,7 @@ public:
 	void retrieveCards();
 	void addCardToTable();
 	void retrieveCardsFromTable();
+	void assignRolesToAllPlayers();
 
 	void printGame();
 	bool isGameFinished();

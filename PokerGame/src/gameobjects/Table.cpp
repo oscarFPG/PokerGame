@@ -1,7 +1,9 @@
 #include "Table.h"
 
+
 Table::Table() {
 	_deck = new Deck();
+	_playerturn = 0;
 	_cardsOnTable.reserve(MAX_CARDS_ON_TABLE);
 	_cardsCounter = 0;
 }
@@ -12,6 +14,7 @@ void Table::addPlayer(std::shared_ptr<Player>& player) {
 		return;
 
 	_players.push_back(player);
+	player->setPlayerRole(PlayerRole::NOT_ASSIGNED);
 }
 
 void Table::shareOutCards() {
@@ -60,6 +63,13 @@ void Table::retrieveCardsFromTable(){
 		_deck->retrieveCard(card);
 	}
 	_cardsCounter = 0;
+}
+
+void Table::assignRolesToAllPlayers(){
+	
+	_players.at(_playerturn)->setPlayerRole(PlayerRole::DEALER);
+	_players.at(_playerturn + 1)->setPlayerRole(PlayerRole::SMALL_BLIND);
+	_players.at(_playerturn + 2)->setPlayerRole(PlayerRole::BIG_BLIND);
 }
 
 void Table::printDeck() {

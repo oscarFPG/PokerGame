@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\interfaces\PlayerRoleInterface.cpp" />
     <ClCompile Include="src\GUIs\GamePrinter.cpp" />
     <ClCompile Include="src\gameobjects\Player.cpp" />
     <ClCompile Include="src\gameobjects\Deck.cpp" />
@@ -29,6 +30,7 @@
     <ClCompile Include="src\gameobjects\Table.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\interfaces\PlayerRoleInterface.h" />
     <ClInclude Include="src\GUIs\GamePrinter.h" />
     <ClInclude Include="src\gameobjects\Player.h" />
     <ClInclude Include="src\gameobjects\Deck.h" />
@@ -36,9 +38,7 @@
     <ClInclude Include="src\control\Controller.h" />
     <ClInclude Include="src\logic\Game.h" />
     <ClInclude Include="src\gameobjects\Table.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="README.me" />
+    <ClInclude Include="src\logic\PlayerRole.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

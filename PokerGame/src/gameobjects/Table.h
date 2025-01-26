@@ -2,6 +2,7 @@
 #include <vector>
 #include "Player.h"
 #include "Deck.h"
+#include "../logic/PlayerRole.h"
 
 
 class Table {
@@ -15,6 +16,7 @@ private:
 
 	Deck* _deck;
 	std::vector<std::shared_ptr<Player>> _players;
+	int _playerturn;	// Posicion en el vector que indica 
 	std::vector<std::unique_ptr<Card>> _cardsOnTable;
 	int _cardsCounter;
 
@@ -27,6 +29,7 @@ public:
 	void retrieveCards();
 	void addCardToTable();
 	void retrieveCardsFromTable();
+	void assignRolesToAllPlayers();
 
 	void printDeck();
 	const std::vector<std::string> getCardsOnTableInfo() const;

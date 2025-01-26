@@ -28,6 +28,10 @@ void Game::retrieveCardsFromTable(){
 	_table->retrieveCardsFromTable();
 }
 
+void Game::assignRolesToAllPlayers(){
+	_table->assignRolesToAllPlayers();
+}
+
 void Game::printGame() {
 	if(_isPrintingOnConsole)
 		_gamePrinter->printTable(_table);

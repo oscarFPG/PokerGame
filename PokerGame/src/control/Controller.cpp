@@ -29,18 +29,8 @@ void Controller::run() {
 
 	configureGame();
 
-	
 	_game->shareOutCards();
-	
-	_game->addCardToTable();
 	_game->printGame();
 
-	_game->addCardToTable();
-	_game->printGame();
-
-	_game->addCardToTable();
-	_game->printGame();
-
-	_game->retrieveCards();
-	_game->printGame();
+	_game->assignRolesToAllPlayers();
 }

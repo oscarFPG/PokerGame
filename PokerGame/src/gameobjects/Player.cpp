@@ -7,10 +7,6 @@ Player::Player(std::string name, int pot) {
 	_playing = true;
 }
 
-Player::Player(const Player& player){
-
-}
-
 void Player::takeCard(std::unique_ptr<Card>& card) {
 
 	if (_cardsCounter < Player::MAX_CARDS_ON_HAND)
@@ -23,6 +19,14 @@ std::unique_ptr<Card> Player::retrieveCard() {
 		return nullptr;
 
 	return std::move(_hand[--_cardsCounter]);
+}
+
+void Player::setPlayerRole(const PlayerRole& role){
+	_role = role;
+}
+
+const PlayerRole Player::getPlayerRole() const{
+	return _role;
 }
 
 const bool Player::isPlaying() const{
