@@ -65,7 +65,7 @@ const int Card::getSuit() const {
 	return _suit;
 }
 
-const std::string Card::toString() const {
+std::string Card::toString() const {
 
 	std::string info;
 	info.push_back('[');

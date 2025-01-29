@@ -2,20 +2,21 @@
 #include <string>
 #include "Card.h"
 #include "../logic/PlayerRole.h"
+#include "../logic/Hand.h"
+#include "../interfaces/PlayerGUI.h"
 
-class Player {
+class Player : PlayerGUI {
 
 public:
 
 	static const int MAX_CARDS_ON_HAND = 2;
 private:
 
-	std::unique_ptr<Card> _hand[Player::MAX_CARDS_ON_HAND];
+	Hand* _hand;
 	PlayerRole _role;
 	std::string _name;
 	unsigned int _pot;
 	bool _playing;
-	int _cardsCounter;
 	
 public:
 
@@ -24,6 +25,9 @@ public:
 	void takeCard(std::unique_ptr<Card>& card);
 	std::unique_ptr<Card> retrieveCard();
 	void setPlayerRole(const PlayerRole& role);
+
+	std::string getPlayerInfo() override;
+	std::string getCardsInfo() override;
 
 	const PlayerRole getPlayerRole() const;
 	const bool isPlaying() const;

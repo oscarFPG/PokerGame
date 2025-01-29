@@ -14,6 +14,7 @@ const void GamePrinter::printTable(const Table* table) const {
 
 	const std::vector<std::shared_ptr<Player>> playerList = table->getPlayerList();
 	const std::vector<std::string> cardsOnTable = table->getCardsOnTableInfo();
+	std::string playerSymbol;
 
 	/*
 		COMO REPRESENTAR EL TABLERO
@@ -24,10 +25,21 @@ const void GamePrinter::printTable(const Table* table) const {
 	*/
 
 	// Print both top players
-	std::cout << TABS_TOP_BOTTOM_PLAYERS << playerList[0]->getPlayerName() << TABS_BETWEEN_PLAYERS_TOP_BOTTOM << playerList[1]->getPlayerName() << "\n";
+	playerSymbol = playerList[0]->getPlayerName();
+	playerSymbol.append(roleToString(playerList[0]->getPlayerRole()));
+	std::cout << TABS_TOP_BOTTOM_PLAYERS << playerSymbol;
+	playerSymbol.clear();
+
+	playerSymbol = playerList[1]->getPlayerName();
+	playerSymbol.append(roleToString(playerList[1]->getPlayerRole()));
+	std::cout << TABS_BETWEEN_PLAYERS_TOP_BOTTOM << playerSymbol << "\n";
+	playerSymbol.clear();
 
 	// Print left side player
-	std::cout << TABS_CENTER_ROW << playerList[5]->getPlayerName() << TABS_BETWEEN_TABLE_PLAYER_LEFT;
+	playerSymbol = playerList[5]->getPlayerName();
+	playerSymbol.append(roleToString(playerList[5]->getPlayerRole()));
+	std::cout << TABS_CENTER_ROW << playerSymbol << TABS_BETWEEN_TABLE_PLAYER_LEFT;
+	playerSymbol.clear();
 
 	// Print table
 	int numCards = cardsOnTable.size();
@@ -36,8 +48,35 @@ const void GamePrinter::printTable(const Table* table) const {
 	}
 
 	// Print right side player
-	std::cout << TABS_BETWEEN_TABLE_PLAYER_RIGHT << playerList[2]->getPlayerName() << "\n";
+	playerSymbol = playerList[2]->getPlayerName();
+	playerSymbol.append(roleToString(playerList[2]->getPlayerRole()));
+	std::cout << TABS_BETWEEN_TABLE_PLAYER_RIGHT << playerSymbol << "\n";
+	playerSymbol.clear();
 
 	// Print both bottom players
-	std::cout << TABS_TOP_BOTTOM_PLAYERS << playerList[4]->getPlayerName() << TABS_BETWEEN_PLAYERS_TOP_BOTTOM << playerList[3]->getPlayerName() << "\n";
+	playerSymbol = playerList[4]->getPlayerName();
+	playerSymbol.append(roleToString(playerList[4]->getPlayerRole()));
+	std::cout << TABS_TOP_BOTTOM_PLAYERS << playerSymbol;
+	playerSymbol.clear();
+
+	playerSymbol = playerList[3]->getPlayerName();
+	playerSymbol.append(roleToString(playerList[3]->getPlayerRole()));
+	std::cout << TABS_BETWEEN_PLAYERS_TOP_BOTTOM << playerSymbol << "\n";
+	playerSymbol.clear();
+}
+
+const std::string GamePrinter::roleToString(const PlayerRole& role) const{
+
+	switch (role) {
+	case PlayerRole::NOT_ASSIGNED:
+		return "";
+	case PlayerRole::DEALER:
+		return "(D)";
+	case PlayerRole::SMALL_BLIND:
+		return "(b)";
+	case PlayerRole::BIG_BLIND:
+		return "(B)";
+	default:
+		return "---";
+	}
 }

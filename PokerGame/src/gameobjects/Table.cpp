@@ -67,9 +67,18 @@ void Table::retrieveCardsFromTable(){
 
 void Table::assignRolesToAllPlayers(){
 	
-	_players.at(_playerturn)->setPlayerRole(PlayerRole::DEALER);
-	_players.at(_playerturn + 1)->setPlayerRole(PlayerRole::SMALL_BLIND);
-	_players.at(_playerturn + 2)->setPlayerRole(PlayerRole::BIG_BLIND);
+	_players.at( _playerturn )->setPlayerRole(PlayerRole::DEALER);
+	_players.at( (_playerturn + 1) % Table::MAX_PLAYERS )->setPlayerRole(PlayerRole::SMALL_BLIND);
+	_players.at( (_playerturn + 2) % Table::MAX_PLAYERS )->setPlayerRole(PlayerRole::BIG_BLIND);
+}
+
+void Table::passTurn(){
+
+	_players.at( _playerturn )->setPlayerRole(PlayerRole::NOT_ASSIGNED);
+	_players.at( (_playerturn + 1) % Table::MAX_PLAYERS )->setPlayerRole(PlayerRole::DEALER);
+	_players.at( (_playerturn + 2) % Table::MAX_PLAYERS )->setPlayerRole(PlayerRole::SMALL_BLIND);
+	_players.at( (_playerturn + 3) % Table::MAX_PLAYERS )->setPlayerRole(PlayerRole::BIG_BLIND);
+	_playerturn = (_playerturn + 1) % Table::MAX_PLAYERS;
 }
 
 void Table::printDeck() {

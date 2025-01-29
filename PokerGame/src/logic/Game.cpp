@@ -32,6 +32,10 @@ void Game::assignRolesToAllPlayers(){
 	_table->assignRolesToAllPlayers();
 }
 
+void Game::passTurn(){
+	_table->passTurn();
+}
+
 void Game::printGame() {
 	if(_isPrintingOnConsole)
 		_gamePrinter->printTable(_table);

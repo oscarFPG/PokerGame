@@ -18,4 +18,5 @@ public:
 
 	GamePrinter(const int maxCardsOnTable);
 	const void printTable(const Table* table) const;
+	const std::string roleToString(const PlayerRole& role) const;
 };

@@ -39,7 +39,7 @@
     <ClCompile Include="src\GUIs\GamePrinter.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\interfaces\PlayerRoleInterface.cpp">
+    <ClCompile Include="src\logic\Hand.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,10 +65,13 @@
     <ClInclude Include="src\GUIs\GamePrinter.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\interfaces\PlayerRoleInterface.h">
+    <ClInclude Include="src\logic\PlayerRole.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\logic\PlayerRole.h">
+    <ClInclude Include="src\logic\Hand.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\interfaces\PlayerGUI.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

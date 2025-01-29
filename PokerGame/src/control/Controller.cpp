@@ -30,7 +30,7 @@ void Controller::run() {
 	configureGame();
 
 	_game->shareOutCards();
-	_game->printGame();
-
 	_game->assignRolesToAllPlayers();
+
+
 }

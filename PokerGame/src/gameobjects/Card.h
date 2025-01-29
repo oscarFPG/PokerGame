@@ -28,6 +28,6 @@ public:
 	const int getValue() const;
 	const int getSuit() const;
 
-	const std::string toString() const;
+	std::string toString() const;
 	const std::string static missingCardToString();
 };

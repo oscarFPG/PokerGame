@@ -1,28 +1,36 @@
 #include "Player.h"
 
 Player::Player(std::string name, int pot) {
+	_hand = new Hand();
+	_role = PlayerRole::NOT_ASSIGNED;
 	_name = name;
 	_pot = pot;
-	_cardsCounter = 0;
 	_playing = true;
 }
 
 void Player::takeCard(std::unique_ptr<Card>& card) {
-
-	if (_cardsCounter < Player::MAX_CARDS_ON_HAND)
-		_hand[_cardsCounter++] = std::move(card);
+	_hand->takeCard(std::move(card));
 }
 
 std::unique_ptr<Card> Player::retrieveCard() {
-
-	if (_cardsCounter == 0)
-		return nullptr;
-
-	return std::move(_hand[--_cardsCounter]);
+	return _hand->retrieveCard();
 }
 
 void Player::setPlayerRole(const PlayerRole& role){
 	_role = role;
+}
+
+std::string Player::getPlayerInfo(){
+	
+	std::string info = getPlayerName();
+	info.append(" - ");
+	info.append("Pot: ");
+	info.append(std::to_string(_pot));
+	return info;
+}
+
+std::string Player::getCardsInfo() {
+	return _hand->getCardsInfo();
 }
 
 const PlayerRole Player::getPlayerRole() const{
