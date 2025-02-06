@@ -15,7 +15,7 @@ private:
 	Hand* _hand;
 	PlayerRole _role;
 	std::string _name;
-	unsigned int _pot;
+	unsigned int _money;
 	bool _playing;
 	
 public:
@@ -24,10 +24,11 @@ public:
 
 	void takeCard(std::unique_ptr<Card>& card);
 	std::unique_ptr<Card> retrieveCard();
-	void setPlayerRole(const PlayerRole& role);
+	void makeForcedBet(const int bet);
 
+	void setPlayerRole(const PlayerRole& role);
 	std::string getPlayerInfo() override;
-	std::string getCardsInfo() override;
+	std::vector<std::string> getCardsInfo() override;
 
 	const PlayerRole getPlayerRole() const;
 	const bool isPlaying() const;

@@ -28,9 +28,27 @@ Controller::Controller(std::unique_ptr<Game> game) {
 void Controller::run() {
 
 	configureGame();
-
-	_game->shareOutCards();
 	_game->assignRolesToAllPlayers();
+	_game->printGame();
+
+	bool play = true;
+	while (play) {
+
+		std::cout << "Repartiendo cartas...\n";
+		_game->shareOutCards();
+
+		std::cout << "Esperando al jugador...\n";
+		_game->playRound();
+
+		std::cout << "Devolviendo cartas...\n";
+		_game->retrieveCards();
+
+		std::cout << "Pasando turno...\n";
+		_game->passTurn();
 
 
+		play = false;
+	}
+
+	std::cout << "Game ended!\n";
 }

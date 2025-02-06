@@ -1,7 +1,7 @@
 #include "GamePrinter.h"
 
-GamePrinter::GamePrinter(const int maxCardsOnTable)
-{
+GamePrinter::GamePrinter(const int maxCardsOnTable){
+
 	TABS_TOP_BOTTOM_PLAYERS = "\t\t  ";
 	TABS_CENTER_ROW = "\t";
 	TABS_BETWEEN_PLAYERS_TOP_BOTTOM = "\t";

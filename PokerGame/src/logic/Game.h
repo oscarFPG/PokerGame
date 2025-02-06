@@ -23,6 +23,7 @@ public:
 	void retrieveCardsFromTable();
 	void assignRolesToAllPlayers();
 	void passTurn();
+	void playRound();
 
 	void printGame();
 	bool isGameFinished();

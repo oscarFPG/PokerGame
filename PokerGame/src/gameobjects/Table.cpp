@@ -1,6 +1,27 @@
 #include "Table.h"
 
 
+int Table::passPlayersIndex(){
+	_playerturn = (_playerturn + 1) % Table::MAX_PLAYERS;
+	return _playerturn;
+}
+
+int Table::getNextPlayersIndex() const{
+	return (_playerturn + 1) & Table::MAX_PLAYERS;
+}
+
+int Table::getSmallBlindIndex() const{
+	return (_playerturn + 1) & Table::MAX_PLAYERS;
+}
+
+int Table::getBigBlindIndex() const{
+	return (_playerturn + 2) & Table::MAX_PLAYERS;
+}
+
+int Table::getPlayerTurnIndex() const{
+	return (_playerturn + 3) & Table::MAX_PLAYERS;
+}
+
 Table::Table() {
 	_deck = new Deck();
 	_playerturn = 0;
@@ -74,11 +95,19 @@ void Table::assignRolesToAllPlayers(){
 
 void Table::passTurn(){
 
-	_players.at( _playerturn )->setPlayerRole(PlayerRole::NOT_ASSIGNED);
+	_players.at(  _playerturn )->setPlayerRole(PlayerRole::NOT_ASSIGNED);
 	_players.at( (_playerturn + 1) % Table::MAX_PLAYERS )->setPlayerRole(PlayerRole::DEALER);
 	_players.at( (_playerturn + 2) % Table::MAX_PLAYERS )->setPlayerRole(PlayerRole::SMALL_BLIND);
 	_players.at( (_playerturn + 3) % Table::MAX_PLAYERS )->setPlayerRole(PlayerRole::BIG_BLIND);
 	_playerturn = (_playerturn + 1) % Table::MAX_PLAYERS;
+}
+
+void Table::smallBlindBets(){
+	_players.at( getSmallBlindIndex() ).get()->makeForcedBet(SMALL_BLIND_BET);
+}
+
+void Table::bigBlindBets(){
+	_players.at( getBigBlindIndex() ).get()->makeForcedBet(BIG_BLIND_BET);
 }
 
 void Table::printDeck() {

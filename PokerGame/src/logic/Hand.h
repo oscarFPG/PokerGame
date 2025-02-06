@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "../gameobjects/Card.h"
 
 class Hand{
@@ -16,5 +17,6 @@ public:
 
 	void takeCard(std::unique_ptr<Card> c);
 	std::unique_ptr<Card> retrieveCard();
-	const std::string getCardsInfo() const;
+	const std::vector<std::string> getCardsInfo() const;
+
 };

@@ -36,6 +36,23 @@ void Game::passTurn(){
 	_table->passTurn();
 }
 
+void Game::playRound(){
+
+	bool roundFinished = false;
+	while (!roundFinished) {
+
+		std::cout << "Small blind bets...\n";
+		_table->smallBlindBets();
+		std::cout << "\n";
+
+		std::cout << "Big blind bets...\n";
+		_table->bigBlindBets();
+		std::cout << "\n";
+
+		system("pause");
+	}
+}
+
 void Game::printGame() {
 	if(_isPrintingOnConsole)
 		_gamePrinter->printTable(_table);

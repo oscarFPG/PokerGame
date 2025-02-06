@@ -17,7 +17,17 @@ std::unique_ptr<Card> Hand::retrieveCard() {
 	return std::move(_hand[_numCards]);
 }
 
-const std::string Hand::getCardsInfo() const
-{
-	return std::string();
+const std::vector<std::string> Hand::getCardsInfo() const{
+	
+	std::vector<std::string> cards;
+	for (int i = 0; i < _numCards; i++) {
+
+		Card* card = _hand[i].get();
+		if (card != nullptr)
+			cards.push_back(_hand[i]->toString());
+		else
+			cards.push_back(Card::missingCardToString());
+	}
+
+	return cards;
 }

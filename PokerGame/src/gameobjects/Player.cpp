@@ -4,7 +4,7 @@ Player::Player(std::string name, int pot) {
 	_hand = new Hand();
 	_role = PlayerRole::NOT_ASSIGNED;
 	_name = name;
-	_pot = pot;
+	_money = pot;
 	_playing = true;
 }
 
@@ -16,20 +16,27 @@ std::unique_ptr<Card> Player::retrieveCard() {
 	return _hand->retrieveCard();
 }
 
+void Player::makeForcedBet(const int bet){
+
+	_money -= bet;
+	std::cout << _name << " was forced to bet " << bet << "$\n";
+	std::cout << "Current money is " << _money << "\n";
+}
+
 void Player::setPlayerRole(const PlayerRole& role){
 	_role = role;
 }
 
 std::string Player::getPlayerInfo(){
 	
-	std::string info = getPlayerName();
+	std::string info = _name;
 	info.append(" - ");
 	info.append("Pot: ");
-	info.append(std::to_string(_pot));
+	info.append(std::to_string(_money));
 	return info;
 }
 
-std::string Player::getCardsInfo() {
+std::vector<std::string> Player::getCardsInfo(){
 	return _hand->getCardsInfo();
 }
 
