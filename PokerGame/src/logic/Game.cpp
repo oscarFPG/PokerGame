@@ -17,7 +17,7 @@ void Game::shareOutCards() {
 }
 
 void Game::retrieveCards() {
-	_table->retrieveCards();
+	_table->retrieveCardsFromPlayers();
 }
 
 void Game::addCardToTable(){
@@ -36,21 +36,8 @@ void Game::passTurn(){
 	_table->passTurn();
 }
 
-void Game::playRound(){
-
-	bool roundFinished = false;
-	while (!roundFinished) {
-
-		std::cout << "Small blind bets...\n";
-		_table->smallBlindBets();
-		std::cout << "\n";
-
-		std::cout << "Big blind bets...\n";
-		_table->bigBlindBets();
-		std::cout << "\n";
-
-		system("pause");
-	}
+void Game::playHand(){
+	_table->playHand();
 }
 
 void Game::printGame() {

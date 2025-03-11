@@ -22,12 +22,14 @@ private:
 	int _playerturn;	// Posicion en el vector que indica
 	std::vector<std::unique_ptr<Card>> _cardsOnTable;
 	int _cardsCounter;
+	bool _isHandWinningPlayer;
 
 	int passPlayersIndex();
 	int getNextPlayersIndex() const;
 	int getSmallBlindIndex() const;
 	int getBigBlindIndex() const;
 	int getPlayerTurnIndex() const;
+	const int getRemainingPlayers() const;
 
 public:
 
@@ -35,13 +37,12 @@ public:
 
 	void addPlayer(std::shared_ptr<Player>& player);
 	void shareOutCards();
-	void retrieveCards();
+	void retrieveCardsFromPlayers();
 	void addCardToTable();
 	void retrieveCardsFromTable();
 	void assignRolesToAllPlayers();
 	void passTurn();
-	void smallBlindBets();
-	void bigBlindBets();
+	void playHand();
 
 	void printDeck();
 	const std::vector<std::string> getCardsOnTableInfo() const;

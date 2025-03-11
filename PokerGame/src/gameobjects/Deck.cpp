@@ -42,5 +42,5 @@ const void Deck::printAllDeck() const{
 }
 
 void Deck::retrieveCard(std::unique_ptr<Card>& card) {
-	card.swap(_fullDeck[card->getSuit()][card->getValue()]);
+	card.swap(_fullDeck[card->getSuit()][card->getValue() - 2]);		// La primera carta(2) se pone en la posicion 0, la 3 en la 1, etc...
 }

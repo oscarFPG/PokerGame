@@ -19,6 +19,9 @@ void Controller::configureGame() {
 
 	std::shared_ptr<Player> p6 = std::make_shared<Player>("Pedro[6]", 100);
 	_game->addPlayerToTable(p6);
+
+	std::cout << "Asignando roles a los jugadores...\n";
+	_game->assignRolesToAllPlayers();
 }
 
 Controller::Controller(std::unique_ptr<Game> game) {
@@ -28,27 +31,14 @@ Controller::Controller(std::unique_ptr<Game> game) {
 void Controller::run() {
 
 	configureGame();
-	_game->assignRolesToAllPlayers();
-	_game->printGame();
-
-	bool play = true;
-	while (play) {
-
-		std::cout << "Repartiendo cartas...\n";
-		_game->shareOutCards();
-
-		std::cout << "Esperando al jugador...\n";
-		_game->playRound();
-
-		std::cout << "Devolviendo cartas...\n";
-		_game->retrieveCards();
-
-		std::cout << "Pasando turno...\n";
+	
+	std::cout << "Comienza la partida!\n";
+	int i = 0;
+	while (i == 0 && !_game->isGameFinished()) {
+		_game->playHand();
 		_game->passTurn();
-
-
-		play = false;
+		++i;
 	}
 
-	std::cout << "Game ended!\n";
+	std::cout << "Fin de la partida!\n";
 }

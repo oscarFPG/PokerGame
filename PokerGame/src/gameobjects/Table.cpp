@@ -22,11 +22,22 @@ int Table::getPlayerTurnIndex() const{
 	return (_playerturn + 3) & Table::MAX_PLAYERS;
 }
 
+const int Table::getRemainingPlayers() const{
+
+	int remaining_players = 0;
+	const int numPlayers = _players.size();
+	for (int i = 0; i < numPlayers; i++)
+		remaining_players += (_players[i].get()->isPlaying());
+
+	return remaining_players;
+}
+
 Table::Table() {
 	_deck = new Deck();
 	_playerturn = 0;
 	_cardsOnTable.reserve(MAX_CARDS_ON_TABLE);
 	_cardsCounter = 0;
+	_isHandWinningPlayer = false;
 }
 
 void Table::addPlayer(std::shared_ptr<Player>& player) {
@@ -52,10 +63,9 @@ void Table::shareOutCards() {
 			p->takeCard(card);
 		}
 	}
-	std::cout << '\n';
 }
 
-void Table::retrieveCards() {
+void Table::retrieveCardsFromPlayers() {
 
 	for (int i = 0; i < _players.size(); i++) {
 
@@ -102,12 +112,37 @@ void Table::passTurn(){
 	_playerturn = (_playerturn + 1) % Table::MAX_PLAYERS;
 }
 
-void Table::smallBlindBets(){
-	_players.at( getSmallBlindIndex() ).get()->makeForcedBet(SMALL_BLIND_BET);
-}
+void Table::playHand(){
 
-void Table::bigBlindBets(){
-	_players.at( getBigBlindIndex() ).get()->makeForcedBet(BIG_BLIND_BET);
+	_isHandWinningPlayer = false;
+	shareOutCards();
+	
+
+	while (!_isHandWinningPlayer) {
+
+		const int MAX_REMAINING_PLAYERS = getRemainingPlayers();
+		int currentRemainingPlayers = MAX_REMAINING_PLAYERS;
+		std::cout << "Quedan " << currentRemainingPlayers << " jugadores activos!\n";
+
+		// Coger al small blind + forzar jugada
+
+		// Coger al big blind + forzar jugada
+			
+		// BUCLE
+			// Coger al jugador al que le toque + esperar su jugada
+			// Hasta completar todos sin que hagan 'RAISE'
+
+			// Si hay 'raise' -> reiniciar turnos -> comenzar 'nueva ronda' desde el ultimo en jugar
+
+		// Seleccionar ganador(ultimo en jugar o unico activo)
+		break;	// De momento para no entrar en bucle infinito
+	}
+
+	// Restablecer actividad(bool)
+	// Pasar turno
+
+	retrieveCardsFromTable();
+	retrieveCardsFromPlayers();
 }
 
 void Table::printDeck() {
