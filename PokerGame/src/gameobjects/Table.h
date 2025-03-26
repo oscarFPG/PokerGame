@@ -15,6 +15,11 @@ public:
 
 private:
 
+	struct HandInfo {
+		int maxBet = 0;		// Biggets bet
+		int totalBet = 0;	// Total amount of bets
+	};
+
 	int SMALL_BLIND_BET = 1;
 	int BIG_BLIND_BET = SMALL_BLIND_BET * 2;
 
@@ -30,7 +35,8 @@ private:
 	int getBigBlindIndex() const;
 	int getPlayerTurnIndex() const;
 	const int getRemainingPlayers() const;
-	int allPlayersPlayOneHand();
+	HandInfo makeForcedPlays();
+	HandInfo allPlayersPlayOneHand(const int& minimumBet);
 	Player* calculateHandWinningPlayer() const;
 
 public:

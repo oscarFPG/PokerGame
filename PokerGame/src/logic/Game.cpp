@@ -37,7 +37,7 @@ void Game::passTurn(){
 }
 
 void Game::playHand(){
-	_table->playHand();
+	_table->playFullHand();
 }
 
 void Game::printGame() {

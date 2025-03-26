@@ -5,6 +5,7 @@ Player::Player(std::string name, int pot) {
 	_role = PlayerRole::NOT_ASSIGNED;
 	_name = name;
 	_money = pot;
+	_moneyOnTable = 0;
 	_playing = true;
 }
 
@@ -18,24 +19,68 @@ std::unique_ptr<Card> Player::retrieveCard() {
 
 int Player::makeForcedBet(const int bet){
 
-	int playersBet = 0;
 	if (_money < bet) {
-		playersBet = _money;
+		_moneyOnTable = _money;
 		_money = 0;
 	}
 	else {
 		_money -= bet;
-		playersBet = bet;
+		_moneyOnTable += bet;
 	}
 	
 	std::cout << _name << " was forced to bet " << bet << "$\n";
-	std::cout << "Current money is " << _money << "\n";
+	std::cout << "Current " << _name << " money is " << _money << "$\n";
+	std::cout << "Current " << _name << " money on table is " << _moneyOnTable << "$\n";
 
-	return playersBet;
+	return _moneyOnTable;
+}
+
+Player::Action Player::makePlay(const int minimumBet){
+
+	Action action;
+
+	std::cout << "--- COMANDOS ---\n";
+	std::cout << "(1) - CHECK\n";
+	std::cout << "(2) - RAISE\n";
+	std::cout << "(3) - FOLD\n";
+
+	int command;
+	std::cin >> command;
+
+	switch (command){
+	
+	case 1:
+		action.bet = (minimumBet < _money) ? minimumBet : _money;
+		action.restartTurn = false;
+		break;
+
+	case 2:
+		
+		int amount;
+		std::cout << "Cantidad a apostar: ";
+		std::cin >> amount;
+		std::cout << "\n";
+
+		action.bet = (amount < _money) ? amount : _money;
+		action.restartTurn = true;
+		break;
+
+	case 3:
+	default:
+		action.bet = 0;
+		action.restartTurn = false;
+		break;
+	}
+
+	return action;
 }
 
 void Player::givePrize(const int amount){
 	_money += amount;
+}
+
+void Player::retire(){
+	_playing = false;
 }
 
 void Player::setPlayerRole(const PlayerRole& role){
