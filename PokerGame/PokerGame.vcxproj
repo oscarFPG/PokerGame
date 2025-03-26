@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Action.cpp" />
     <ClCompile Include="src\logic\Hand.cpp" />
     <ClCompile Include="src\GUIs\GamePrinter.cpp" />
     <ClCompile Include="src\gameobjects\Player.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="src\gameobjects\Table.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
     <ClInclude Include="src\interfaces\PlayerGUI.h" />
     <ClInclude Include="src\logic\Hand.h" />
     <ClInclude Include="src\GUIs\GamePrinter.h" />

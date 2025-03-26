@@ -9,6 +9,7 @@ class Table {
 
 public:
 
+	static const int INITIAL_NUM_CARDS_ON_TABLE = 3;
 	static const int MAX_PLAYERS = 6;
 	static const int MAX_CARDS_ON_TABLE = 5;
 
@@ -24,12 +25,13 @@ private:
 	int _cardsCounter;
 	bool _isHandWinningPlayer;
 
-	int passPlayersIndex();
-	int getNextPlayersIndex() const;
+	void passPlayersIndex();
 	int getSmallBlindIndex() const;
 	int getBigBlindIndex() const;
 	int getPlayerTurnIndex() const;
 	const int getRemainingPlayers() const;
+	int allPlayersPlayOneHand();
+	Player* calculateHandWinningPlayer() const;
 
 public:
 
@@ -42,7 +44,7 @@ public:
 	void retrieveCardsFromTable();
 	void assignRolesToAllPlayers();
 	void passTurn();
-	void playHand();
+	void playFullHand();
 
 	void printDeck();
 	const std::vector<std::string> getCardsOnTableInfo() const;

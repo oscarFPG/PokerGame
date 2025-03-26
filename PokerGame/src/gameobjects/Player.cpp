@@ -16,11 +16,26 @@ std::unique_ptr<Card> Player::retrieveCard() {
 	return _hand->retrieveCard();
 }
 
-void Player::makeForcedBet(const int bet){
+int Player::makeForcedBet(const int bet){
 
-	_money -= bet;
+	int playersBet = 0;
+	if (_money < bet) {
+		playersBet = _money;
+		_money = 0;
+	}
+	else {
+		_money -= bet;
+		playersBet = bet;
+	}
+	
 	std::cout << _name << " was forced to bet " << bet << "$\n";
 	std::cout << "Current money is " << _money << "\n";
+
+	return playersBet;
+}
+
+void Player::givePrize(const int amount){
+	_money += amount;
 }
 
 void Player::setPlayerRole(const PlayerRole& role){

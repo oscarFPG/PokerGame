@@ -1,3 +1,4 @@
-﻿  Deck.cpp
-D:\PokerGame\PokerGame\src\gameobjects\Deck.cpp(5,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  PokerGame.vcxproj -> D:\PokerGame\x64\Debug\PokerGame.exe
+﻿  Table.cpp
+U:\hlocal\PokerGame\PokerGame\src\gameobjects\Table.cpp(28,38): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+U:\hlocal\PokerGame\PokerGame\src\gameobjects\Table.cpp(28,23): warning C4267: 'inicializando': conversión de 'size_t' a 'const int'; posible pérdida de datos
+  PokerGame.vcxproj -> U:\hlocal\PokerGame\x64\Debug\PokerGame.exe

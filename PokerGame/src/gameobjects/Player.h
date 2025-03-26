@@ -24,7 +24,8 @@ public:
 
 	void takeCard(std::unique_ptr<Card>& card);
 	std::unique_ptr<Card> retrieveCard();
-	void makeForcedBet(const int bet);
+	int makeForcedBet(const int bet);
+	void givePrize(const int amount);
 
 	void setPlayerRole(const PlayerRole& role);
 	std::string getPlayerInfo() override;
