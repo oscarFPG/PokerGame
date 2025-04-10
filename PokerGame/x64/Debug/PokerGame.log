@@ -1,16 +1,14 @@
 ﻿  GamePrinter.cpp
-U:\hlocal\PokerGame\PokerGame\src\GUIs\GamePrinter.h(4,14): warning C4091: 'static ': se ha omitido a la izquierda de 'GamePrinter' cuando no hay ninguna variable declarada
-U:\hlocal\PokerGame\PokerGame\src\GUIs\GamePrinter.cpp(45,15): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\usuario_local\Documents\PokerGame\PokerGame\src\GUIs\GamePrinter.h(4,14): warning C4091: 'static ': se ha omitido a la izquierda de 'GamePrinter' cuando no hay ninguna variable declarada
+C:\Users\usuario_local\Documents\PokerGame\PokerGame\src\GUIs\GamePrinter.cpp(45,15): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
   Controller.cpp
-U:\hlocal\PokerGame\PokerGame\src\GUIs\GamePrinter.h(4,14): warning C4091: 'static ': se ha omitido a la izquierda de 'GamePrinter' cuando no hay ninguna variable declarada
-  Player.cpp
-U:\hlocal\PokerGame\PokerGame\src\gameobjects\Player.cpp(22,13): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\usuario_local\Documents\PokerGame\PokerGame\src\GUIs\GamePrinter.h(4,14): warning C4091: 'static ': se ha omitido a la izquierda de 'GamePrinter' cuando no hay ninguna variable declarada
   Table.cpp
-U:\hlocal\PokerGame\PokerGame\src\gameobjects\Table.cpp(23,38): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
-U:\hlocal\PokerGame\PokerGame\src\gameobjects\Table.cpp(23,23): warning C4267: 'inicializando': conversión de 'size_t' a 'const int'; posible pérdida de datos
+C:\Users\usuario_local\Documents\PokerGame\PokerGame\src\gameobjects\Table.cpp(23,38): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\usuario_local\Documents\PokerGame\PokerGame\src\gameobjects\Table.cpp(23,23): warning C4267: 'inicializando': conversión de 'size_t' a 'const int'; posible pérdida de datos
   Game.cpp
-U:\hlocal\PokerGame\PokerGame\src\GUIs\GamePrinter.h(4,14): warning C4091: 'static ': se ha omitido a la izquierda de 'GamePrinter' cuando no hay ninguna variable declarada
+C:\Users\usuario_local\Documents\PokerGame\PokerGame\src\GUIs\GamePrinter.h(4,14): warning C4091: 'static ': se ha omitido a la izquierda de 'GamePrinter' cuando no hay ninguna variable declarada
   PokerGame.cpp
-U:\hlocal\PokerGame\PokerGame\src\GUIs\GamePrinter.h(4,14): warning C4091: 'static ': se ha omitido a la izquierda de 'GamePrinter' cuando no hay ninguna variable declarada
+C:\Users\usuario_local\Documents\PokerGame\PokerGame\src\GUIs\GamePrinter.h(4,14): warning C4091: 'static ': se ha omitido a la izquierda de 'GamePrinter' cuando no hay ninguna variable declarada
   Generando código...
-  PokerGame.vcxproj -> U:\hlocal\PokerGame\x64\Debug\PokerGame.exe
+  PokerGame.vcxproj -> C:\Users\usuario_local\Documents\PokerGame\x64\Debug\PokerGame.exe

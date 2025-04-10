@@ -43,6 +43,7 @@ Player::Action Player::makePlay(const int minimumBet){
 	std::cout << "(1) - CHECK\n";
 	std::cout << "(2) - RAISE\n";
 	std::cout << "(3) - FOLD\n";
+	std::cout << _name << " is making a decision...\n";
 
 	int command;
 	std::cin >> command;

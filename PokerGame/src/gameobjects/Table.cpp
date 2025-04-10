@@ -6,15 +6,15 @@ void Table::passPlayersIndex(){
 }
 
 int Table::getSmallBlindIndex() const{
-	return (_playerturn + 1) & Table::MAX_PLAYERS;
+	return (_playerturn + 1) % Table::MAX_PLAYERS;
 }
 
 int Table::getBigBlindIndex() const{
-	return (_playerturn + 2) & Table::MAX_PLAYERS;
+	return (_playerturn + 2) % Table::MAX_PLAYERS;
 }
 
 int Table::getPlayerTurnIndex() const{
-	return (_playerturn + 3) & Table::MAX_PLAYERS;
+	return (_playerturn + 3) % Table::MAX_PLAYERS;
 }
 
 const int Table::getRemainingPlayers() const{
@@ -33,6 +33,7 @@ Table::Table() {
 	_cardsOnTable.reserve(MAX_CARDS_ON_TABLE);
 	_cardsCounter = 0;
 	_isHandWinningPlayer = false;
+	_firstPlayed = nullptr;
 }
 
 void Table::addPlayer(std::shared_ptr<Player>& player) {
@@ -115,11 +116,11 @@ void Table::playFullHand(){
 
 
 	shareOutCards();
-	lastBet = makeForcedPlays();		// Jugadas small blind y big blind
+	lastBet = makeForcedPlays();		// Juegan el small blind y el big blind
 	totalBets.maxBet = std::max(totalBets.maxBet, lastBet.maxBet);
 	totalBets.totalBet += lastBet.totalBet;
 
-	lastBet = allPlayersPlayOneHand(totalBets.maxBet);	// Jugadas del resto de jugadores
+	lastBet = allPlayersPlayOneHand(totalBets.maxBet);	// Jugadas del resto de jugadores hasta fin de apuestas
 	totalBets.maxBet = std::max(totalBets.maxBet, lastBet.maxBet);
 	totalBets.totalBet += lastBet.totalBet;
 
@@ -153,6 +154,7 @@ Table::HandInfo Table::makeForcedPlays() {
 	int currentRemainingPlayers = MAX_REMAINING_PLAYERS;
 
 	Player* smallBlind = _players.at(getSmallBlindIndex()).get();
+	_firstPlayed = smallBlind;
 	bets.totalBet += smallBlind->makeForcedBet(SMALL_BLIND_BET);
 	--currentRemainingPlayers;
 	std::cout << "Quedan " << currentRemainingPlayers << " jugadores por jugar!\n";
@@ -165,32 +167,35 @@ Table::HandInfo Table::makeForcedPlays() {
 
 	std::cout << "Current hand pot is " << bets.totalBet << "$\n";
 	std::cout << "Maximun bet is " << bets.maxBet << "$\n";
-	std::cout << "Quedan " << currentRemainingPlayers << " jugadores activos!\n";
+	std::cout << "Quedan " << currentRemainingPlayers << " jugadores activos!\n\n";
 
 	return bets;
 }
 
-Table::HandInfo Table::allPlayersPlayOneHand(const int& minimumBet){
+Table::HandInfo Table::allPlayersPlayOneHand(int minimumBet){
 
 	HandInfo bets;
-	int currentRemainingPlayers = getRemainingPlayers();
-	while (currentRemainingPlayers != 0) {
+	Player* currentPlayer = _players.at(getPlayerTurnIndex()).get();
+	while ( currentPlayer != _firstPlayed ) {
 
-		Player* player = _players.at( getPlayerTurnIndex() ).get();
-		Player::Action action = player->makePlay(minimumBet);
-	
+		Player::Action action = currentPlayer->makePlay(minimumBet);
+		minimumBet = std::max(minimumBet, action.bet);
+
+		// Player folds or keeps playing
 		if (action.bet == 0)
-			player->retire();
+			currentPlayer->retire();
 		else {
-			bets.maxBet += action.bet;
+			bets.totalBet += action.bet;
+			bets.maxBet = std::max(minimumBet, bets.maxBet);
 		}
 
-		if (action.restartTurn)
-			currentRemainingPlayers = getRemainingPlayers();
+		// Restart turn cicle if necessary
+		if (action.restartTurn) {
+			_firstPlayed = currentPlayer;
+		}
 
 		passPlayersIndex();
-		char c;
-		std::cin >> c;
+		currentPlayer = _players.at(getPlayerTurnIndex()).get();
 	}
 
 	return bets;

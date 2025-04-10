@@ -24,10 +24,11 @@ private:
 	int BIG_BLIND_BET = SMALL_BLIND_BET * 2;
 
 	Deck* _deck;
-	std::vector<std::shared_ptr<Player>> _players;
+	//TODO - Crear array circular correctamente => std::vector<std::shared_ptr<Player>> _players;
 	int _playerturn;	// Posicion en el vector que indica
 	std::vector<std::unique_ptr<Card>> _cardsOnTable;
 	int _cardsCounter;
+	Player* _firstPlayed;
 	bool _isHandWinningPlayer;
 
 	void passPlayersIndex();
@@ -36,7 +37,7 @@ private:
 	int getPlayerTurnIndex() const;
 	const int getRemainingPlayers() const;
 	HandInfo makeForcedPlays();
-	HandInfo allPlayersPlayOneHand(const int& minimumBet);
+	HandInfo allPlayersPlayOneHand(int minimumBet);
 	Player* calculateHandWinningPlayer() const;
 
 public:
